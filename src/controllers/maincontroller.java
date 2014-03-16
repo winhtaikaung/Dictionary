@@ -65,12 +65,13 @@ public class maincontroller implements ActionListener,ListSelectionListener,Docu
 	
 	//Making Menu for the system
 	private JMenuItem mnitemabt;
+	private JMenuItem mntmExit;
 	private JMenuItem mnitemneword;
 	private JMenuItem mnlinkdata;
 	
 	
 	public maincontroller(JFrame _frmdict,Panel _toppanel,JTextField _txtsearch,JList _lstword,JTextPane _textcontent,JTextPane _textword,JTextPane _texttype,
-			JMenuItem _mnitemabt,JMenuItem _mnlink,JMenuItem _mnitemneword,JButton _btnstop,JButton _btnminimize,JButton _btnprev,JButton _btnnex,JButton _btneditword,JButton _btndel){
+			JMenuItem _mnitemabt,JMenuItem _mnlink,JMenuItem _mnitemneword,JMenuItem _mntmExit,JButton _btnstop,JButton _btnminimize,JButton _btnprev,JButton _btnnex,JButton _btneditword,JButton _btndel){
 		
 		this.frmdict=_frmdict;
 		this.toppanel=_toppanel;
@@ -86,6 +87,7 @@ public class maincontroller implements ActionListener,ListSelectionListener,Docu
 		this.mnitemabt=_mnitemabt;
 		this.mnitemneword=_mnitemneword;
 		this.mnlinkdata=_mnlink;
+		this.mntmExit=_mntmExit;
 		
 		this.btnstop=_btnstop;
 		this.btnminimize=_btnminimize;
@@ -120,6 +122,7 @@ public class maincontroller implements ActionListener,ListSelectionListener,Docu
 			if(e.getSource()==mnlinkdata){
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+				
 				int result = fileChooser.showOpenDialog(fileChooser);
 				if (result == JFileChooser.APPROVE_OPTION) {
 				    File selectedFile = fileChooser.getSelectedFile();
@@ -132,6 +135,10 @@ public class maincontroller implements ActionListener,ListSelectionListener,Docu
 				searchlist.clear();
 				System.exit(0);
 				
+			}
+			if(e.getSource()==mntmExit){
+				
+				System.exit(0);
 			}
 			if(e.getSource()==btnminimize){
 				frmdict.setState(Frame.ICONIFIED);
@@ -264,7 +271,7 @@ public class maincontroller implements ActionListener,ListSelectionListener,Docu
 				
 				o.setWord(lstword.getSelectedValue().toString());
 				o= dal.getByword(o,tblname);
-				txtcontent.setText("\t"+o.getDesc()+"");
+				txtcontent.setText("\t<span style='font-size:15px;'>"+o.getDesc()+"</span>");
 				txtword.setText(o.getWord());
 				txttype.setText("("+o.getWtype()+")");
 				

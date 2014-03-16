@@ -7,6 +7,7 @@ import java.net.URL;
 import Frames.Splash;
 import Frames.mainform;
 import dao.Dac;
+import db.dbhelper;
 public class main {
 
 	public static void main(String[] args) {
@@ -19,8 +20,8 @@ public class main {
 		mainform t=new mainform();
 		
 		s.instance().run();
-		try {
-			
+	try {
+		
 			
 			
 		} catch (Exception e) {
@@ -29,13 +30,13 @@ public class main {
 		}finally{
 			t.instance().run();
 			
-		}
+	}
 		
 		
 		
 		/*dbhelper dbhelp=new dbhelper();
 		try{
-			dbhelp.Excute("INSERT INTO A (word,type,desc) values ('BN','n','zzzzzzzzzzzzzzzzzz');");
+			dbhelp.makedbCon("SELECT * FROM A");
 		}catch(Exception e){
 			System.out.println("sss");
 			

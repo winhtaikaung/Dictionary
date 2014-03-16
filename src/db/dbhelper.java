@@ -24,7 +24,9 @@ public class dbhelper {
 	 * This is auto loader function
 	 * 
 	 * */
-	String dburl="jdbc:sqlite:/Data/dict.db";
+	
+	String dburl="jdbc:sqlite:"+ getClass().getResource("/db/dict.db").toString();
+	
 	public static dbhelper instance(){
 		
 			if(_dbhelper==null){
@@ -37,13 +39,17 @@ public class dbhelper {
 	
 	
 	
-	private void makedbCon(){
+	public void makedbCon(String Sql){
 		
 		Connection c=null;
+		Statement stmt=null;
 		try{
 			Class.forName("org.sqlite.JDBC");
 		 	c = DriverManager.getConnection(dburl);
 		 	c.setAutoCommit(false);
+		 	stmt=c.createStatement();
+		 	ResultSet rs = stmt.executeQuery( Sql );
+
 		}catch(Exception e){
 			
 			System.out.println(e.getMessage());
@@ -56,7 +62,7 @@ public class dbhelper {
 		
 		
 	    try {
-	     makedbCon();
+	     
 	     System.out.println("DB OPENED");
 	      
 	    } catch ( Exception e ) {
@@ -98,18 +104,17 @@ public class dbhelper {
 //			String s=dir.getAbsolutePath();
 			
 			/*URL*/
-			//ds.setUrl("jdbc:sqlite::resource:file:"+maincontroller.dbpath);
+			ds.setUrl(dburl);
 			/*dbpath*/
 			
-			ds.setUrl("jdbc:sqlite:"+maincontroller.dbpath);
-			
+			//ds.setUrl("jdbc:sqlite:"+maincontroller.dbpath);
+			//ds.setUrl("jdbc:sqlite:"+getClass().getResource("dict.db").toString());
 			
 			//System.out.println(s);
 			//ds.setUrl("jdbc:sqlite::resource:"+"../Data/dict.db");
 			//ds.setUrl("jdbc:sqlite::resource:jar:"+getClass().getResource("dict.db").toString());
 			c=ds.getConnection();
-		 	
-		
+		 			
 		 	
 		 	c.setAutoCommit(false);
 		 	
@@ -132,32 +137,21 @@ public class dbhelper {
 		ArrayList rows=new ArrayList();
 		try{
 			Class.forName("org.sqlite.JDBC");
-				SQLiteConfig confg=new SQLiteConfig();
-				confg.enableFullSync(true);
-				confg.setReadOnly(false);
-				
-				SQLiteDataSource ds=new  SQLiteDataSource(confg);
-			      //c = DriverManager.getConnection(dburl);
-				
-				//ds.setUrl("jdbc:sqlite::resource:"+getClass().getResource("dict.db").toString());
-				//ds.setUrl("jdbc:sqlite::resource:"+"../Data/dict.db");
-				//ds.setUrl("jdbc:sqlite::resource:"+getClass().getResource("dict.db").toString());
-//			URL url=getClass().getProtectionDomain().getCodeSource().getLocation();
-//			String authority=url.getAuthority();	
-//				File myfile = new File(url.toURI());
-//				File dir = myfile.getParentFile();
-//				String s=dir.getAbsolutePath();
-				
-//				InputStream input = getClass().getResourceAsStream("/dataFolder/Folder1/file.xml");
-			/*This is url resource*/	
-				//ds.setUrl("jdbc:sqlite::resource:file:"+maincontroller.dbpath);
-			/*This is testing */	
-				ds.setUrl("jdbc:sqlite:"+maincontroller.dbpath);
-					c = ds.getConnection();
-					c.setAutoCommit(false);
-			     
-		
-			      stmt = c.createStatement();
+			SQLiteConfig confg=new SQLiteConfig();
+			confg.enableFullSync(true);
+			confg.setReadOnly(false);
+			
+			SQLiteDataSource ds=new  SQLiteDataSource(confg);
+			ds.setUrl("jdbc:sqlite::resource:"+getClass().getResource("dict.db"));
+			c = ds.getConnection();
+			c.setAutoCommit(false);
+	     
+
+	      stmt = c.createStatement();
+			
+			stmt = c.createStatement();
+			
+
 			      ResultSet rs = stmt.executeQuery(sql);
 			      
 			      
@@ -183,32 +177,7 @@ public class dbhelper {
 		}
 	}
 	
-/*public  void Excute(String sql) throws Exception {
-		
-		// l����ݿ�
-		
-			// Load JDBC driver
-			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			//pathString=pathString.replace("/", "\\");
-			
-		
-			//String pathString="D:\\sores\\java\\ktv\\src\\db\\inventry.mdb";zz
-			String dbUrl = "jdbc:odbc:driver={Microsoft Access Driver (*.mdb)};DBQ="+pathString;
 
-			//String dbUrl = "jdbc:odbc:driver={Microsoft Access Driver (*.mdb)};DBQ=C:\\Documents and Settings\\chenyx\\workspace\\swing\\src\\access\\test.mdb";
-			Connection con = DriverManager.getConnection(dbUrl, "",
-					"");
-			// SQL���
-			
-			Statement state = con.createStatement(
-					ResultSet.TYPE_SCROLL_SENSITIVE,
-					ResultSet.CONCUR_UPDATABLE);
-			// ִ��SQL���
-			state.execute(sql);
-			state.close();
-			con.close();	
-		
-	}*/
 	
 	
 	

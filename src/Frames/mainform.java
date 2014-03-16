@@ -232,12 +232,12 @@ public class mainform {
 		lstword.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		lstword.setBackground(Color.WHITE);
 		lstword.setVisibleRowCount(10);
-		lstword.setBounds(10, 76, 240, 388);
+		lstword.setBounds(10, 76, 240, 408);
 		lstword.scrollRectToVisible(new Rectangle(240, 288));
 		lstword.setAutoscrolls(true);
 		//JScrollPane jb=new JScrollPane(lstword,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		//desktopPane.add(jb);
-		jscroll.setBounds(10, 76, 240, 388);
+		jscroll.setBounds(10, 76, 240, 408);
 		jscroll.setViewportView(lstword);
 		
 		
@@ -245,29 +245,36 @@ public class mainform {
 		
 		
 		
+		JScrollPane contentscroll=new JScrollPane();
 		
+		contentscroll.setBorder(null);
+		jscroll.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		
-		JTextPane txtcontent = new JTextPane();
+		JTextPane txtcontent = new JTextPane();		
 		txtcontent.setBorder(new MatteBorder(0, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		txtcontent.setContentType("text/html");
-		txtcontent.setEditable(false);
-		
+		txtcontent.setContentType("text/html");		
+		txtcontent.setEditable(false);		
 		desktopPane.setLayer(txtcontent, 0);
-		txtcontent.setBounds(262, 151, 745, 313);
-		desktopPane.add(txtcontent);
+		txtcontent.setBounds(262, 170, 748, 313);
+		
+		contentscroll.setBounds(262, 170, 745, 313);
+		
+		contentscroll.setViewportView(txtcontent);
+		desktopPane.add(contentscroll);
 		
 		JTextPane txtword = new JTextPane();
 		txtword.setBorder(new MatteBorder(1, 1, 0, 1, (Color) new Color(0, 0, 0)));
 		txtword.setEditable(false);
 		txtword.setFont(new Font("Bitstream Charter", Font.BOLD, 21));
-		txtword.setBounds(262, 78, 745, 40);
+		txtword.setBounds(262, 78, 745, 53);
 		desktopPane.add(txtword);
 		
 		JTextPane txttype = new JTextPane();
+		txttype.setEditable(false);
 		txttype.setBorder(new MatteBorder(0, 1, 0, 1, (Color) new Color(0, 0, 0)));
 		txttype.setForeground(Color.RED);
-		txttype.setFont(new Font("Dialog", Font.BOLD, 13));
-		txttype.setBounds(262, 118, 745, 40);
+		txttype.setFont(new Font("Dialog", Font.BOLD, 20));
+		txttype.setBounds(262, 130, 745, 40);
 		desktopPane.add(txttype);
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -287,7 +294,7 @@ public class mainform {
 		JMenu mnEdit = new JMenu("Edit");
 		mnEdit.setFont(new Font("Dialog", Font.PLAIN, 14));
 		mnEdit.setMnemonic('t');
-		menuBar.add(mnEdit);
+		//menuBar.add(mnEdit);
 		
 		JMenuItem mntmneword = new JMenuItem("Add New Word  ");
 		mntmneword.setFont(new Font("Dialog", Font.PLAIN, 14));
@@ -355,7 +362,7 @@ public class mainform {
 		btn_editword.setBounds(930, 32, btn_edit.getIconWidth(),btn_edit.getIconHeight());
 		
 		
-		desktopPane.add(btn_editword);
+		//desktopPane.add(btn_editword);
 		
 		JButton btndel = new JButton("");
 		btndel.setMnemonic('d');
@@ -370,7 +377,7 @@ public class mainform {
 		btndel.setRolloverIcon(btn_del_rol);
 		btndel.setVisible(false);
 		btndel.setBounds(967, 32, btn_del.getIconWidth(), btn_del.getIconHeight());
-		desktopPane.add(btndel);
+		//desktopPane.add(btndel);
 		
 		
 		
@@ -380,10 +387,10 @@ public class mainform {
 		lblNewLabel_1.setBounds(0, -30, 1030, 521);
 		desktopPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel = new JLabel("Geological Dictionary");
+		JLabel lblNewLabel = new JLabel("24 hr Geological Dictionary");
 		lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(12, 5, 180, 20);
+		lblNewLabel.setBounds(12, 5, 215, 20);
 		panel.add(lblNewLabel);
 		
 		JLabel lblbackground = new JLabel("");
@@ -395,7 +402,7 @@ public class mainform {
 		JMenuItem mnulink = new JMenuItem("Link to db");
 		mnEdit.add(mnulink);
 		
-		maincontroller _maincontoll=new maincontroller(frmOpenGeoDictionary,panel, txtsearch,lstword,txtcontent,txtword,txttype,mntmAbout,mnulink,mntmneword,btnstop,btnminimize,btnprev,btnnex,btn_editword,btndel);
+		maincontroller _maincontoll=new maincontroller(frmOpenGeoDictionary,panel, txtsearch,lstword,txtcontent,txtword,txttype,mntmAbout,mnulink,mntmneword,mntmExit,btnstop,btnminimize,btnprev,btnnex,btn_editword,btndel);
 		
 		
 		
@@ -409,6 +416,7 @@ public class mainform {
 		btnnex.addActionListener(_maincontoll);
 		btn_editword.addActionListener(_maincontoll);
 		mnulink.addActionListener(_maincontoll);
+		mntmExit.addActionListener(_maincontoll);
 		
 		btnminimize.addActionListener(_maincontoll);
 		btndel.addActionListener(_maincontoll);

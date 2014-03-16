@@ -28,6 +28,7 @@ import java.awt.Toolkit;
 import java.awt.SystemColor;
 import javax.swing.border.CompoundBorder;
 import javax.swing.UIManager;
+import javax.swing.JTextField;
 
 public class aboutform {
 
@@ -70,7 +71,7 @@ public class aboutform {
 		frmAbout.setResizable(false);
 		frmAbout.setBounds(new Rectangle(100, 27, 0, 0));
 		frmAbout.setTitle("About");
-		frmAbout.setBounds(100, 100, 520, 300);
+		frmAbout.setBounds(100, 100, 520, 369);
 		frmAbout.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		JLayeredPane desktopPane = new JLayeredPane();
@@ -121,7 +122,7 @@ public class aboutform {
 		
 		JScrollPane jscrol=new JScrollPane();
 		JTextPane txtabout = new JTextPane();
-		txtabout.setText("This Software is dedicated to all geologist around the world.\nYou can insert the new word By yourself.\nThis Product is  under GNU/GPL License ");
+		txtabout.setText("This Software is dedicated to all geologist around the world.\n\nThis Product is  under GNU/GPL License \n\nSpecial thanks to Khin Zaw Hein, Chit Sum Maung, Phyo Han Htet, Chit Myo Lwin who help us in DataEntry.\n\n If You find any bugs please Let me know!\nContact khinzawhein24@gmail.com\nWant to get source! Please Visit Here https://github.com/winhtaikaung/Dictionary/ ");
 		txtabout.setEditable(false);
 		txtabout.setBounds(126, 64, 258, 156);
 		//desktopPane.add(txtabout);
@@ -140,7 +141,7 @@ public class aboutform {
 		btnhref.setEnabled(false);
 		btnhref.setBackground(Color.WHITE);
 		btnhref.setIconTextGap(5);
-		btnhref.setBounds(126, 233, 230, 25);
+		btnhref.setBounds(121, 302, 230, 25);
 		
 		btnhref.setText("<HTML><a href=\"http://www.epicmyanmar.com\">www.epicmyanmar.com</a></HTML>");
 		desktopPane.add(btnhref);
@@ -153,6 +154,16 @@ public class aboutform {
 		desktopPane.add(lblNewLabel_2);
 		
 		aboutcontroller abtcontroll=new aboutcontroller(frmAbout,btnepic,btnstop,panel,btnhref);
+		
+		JTextPane animatemarque = new JTextPane();
+		animatemarque.setBackground(Color.BLACK);
+		animatemarque.setContentType("text/html");
+		animatemarque.setEditable(false);
+		animatemarque.setText("<html><marquee behavior='alternate'><span style='backgound-color:black;color:green;' >Android Application will available soon </span></marquee></html>");
+		animatemarque.setBounds(102, 280, 277, 21);
+		desktopPane.add(animatemarque);
+		
+		
 		btnhref.addActionListener(abtcontroll);
 		btnepic.addActionListener(abtcontroll);
 		btnstop.addActionListener(abtcontroll);
